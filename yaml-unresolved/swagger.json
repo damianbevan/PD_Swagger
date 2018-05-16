@@ -1,0 +1,1810 @@
+swagger: '2.0'
+info:
+  version: v1
+  title: People Directory API
+host: pdapi
+schemes:
+  - https
+paths:
+  /api/v1/Addresses:
+    get:
+      tags:
+        - Addresses
+      summary: Fetches all Address resources
+      operationId: Addresses_GetAddresses
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: page
+          in: query
+          description: The page number
+          required: false
+          type: integer
+          format: int32
+        - name: orderBy
+          in: query
+          description: The ordering attribute
+          required: false
+          type: string
+        - name: ascending
+          in: query
+          description: Default ascending
+          required: false
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/AddressDto'
+    post:
+      tags:
+        - Addresses
+      summary: Creates an Address resource
+      operationId: Addresses_PostAddress
+      consumes:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: addressDto
+          in: body
+          description: The resource to create
+          required: true
+          schema:
+            $ref: '#/definitions/AddressDto'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/AddressDto'
+  '/api/v1/Addresses/{id}':
+    get:
+      tags:
+        - Movements
+      summary: Fetches a Movement resource
+      operationId: Movements_GetMovement
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: id
+          in: path
+          description: The unique reference of the resource
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/MovementDto'
+    put:
+      tags:
+        - Addresses
+      summary: Replaces an Address resource
+      operationId: Addresses_PutAddress
+      consumes:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+        - application/x-www-form-urlencoded
+      produces: []
+      parameters:
+        - name: id
+          in: path
+          description: The unique reference
+          required: true
+          type: integer
+          format: int32
+        - name: addressDto
+          in: body
+          description: The resource to update
+          required: true
+          schema:
+            $ref: '#/definitions/AddressDto'
+      responses:
+        '204':
+          description: No Content
+    delete:
+      tags:
+        - Addresses
+      summary: Deletes an Address resource using its identifier
+      operationId: Addresses_DeleteAddress
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: id
+          in: path
+          description: The unique reference
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/AddressDto'
+  '/api/{version}/Addresses':
+    post:
+      tags:
+        - Addresses
+      operationId: Addresses_SendAudit
+      consumes: []
+      produces: []
+      parameters:
+        - name: version
+          in: path
+          required: true
+          type: string
+      responses:
+        '204':
+          description: No Content
+  /api/v1/LifeEvents:
+    get:
+      tags:
+        - LifeEvents
+      summary: Fetches all LifeEvent resources
+      operationId: LifeEvents_GetLifeEvents
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: page
+          in: query
+          description: The page number
+          required: false
+          type: integer
+          format: int32
+        - name: orderBy
+          in: query
+          description: The ordering attribute
+          required: false
+          type: string
+        - name: ascending
+          in: query
+          description: Default ascending
+          required: false
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/LifeEventDto'
+  '/api/v1/People/{id}/Addresses':
+    get:
+      tags:
+        - LifeEvents
+      summary: Fetches the LifeEvent resources of a Person
+      operationId: LifeEvents_GetLifeEventsByPersonId
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: id
+          in: path
+          description: The Person unique reference
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/LifeEventDto'
+  '/api/{version}/LifeEvents/{id}':
+    get:
+      tags:
+        - LifeEvents
+      summary: Fetches a LifeEvent resource
+      operationId: LifeEvents_GetLifeEvent
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: id
+          in: path
+          description: The unique reference of the resource
+          required: true
+          type: integer
+          format: int32
+        - name: version
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/LifeEventDto'
+    put:
+      tags:
+        - LifeEvents
+      summary: Replaces a LifeEvent resource
+      operationId: LifeEvents_PutLifeEvent
+      consumes:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+        - application/x-www-form-urlencoded
+      produces: []
+      parameters:
+        - name: id
+          in: path
+          description: The unique reference
+          required: true
+          type: integer
+          format: int32
+        - name: lifeEventDto
+          in: body
+          description: The resource to update
+          required: true
+          schema:
+            $ref: '#/definitions/LifeEventDto'
+        - name: version
+          in: path
+          required: true
+          type: string
+      responses:
+        '204':
+          description: No Content
+    delete:
+      tags:
+        - LifeEvents
+      summary: Deletes a LifeEvent resource using its identifier
+      operationId: LifeEvents_DeleteLifeEvent
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: id
+          in: path
+          description: The unique reference
+          required: true
+          type: integer
+          format: int32
+        - name: version
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/LifeEventDto'
+  /api/v1/Movements:
+    get:
+      tags:
+        - Movements
+      summary: Fetches all Movement resources
+      operationId: Movements_GetMovements
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: page
+          in: query
+          description: The page number
+          required: false
+          type: integer
+          format: int32
+        - name: orderBy
+          in: query
+          description: The ordering attribute
+          required: false
+          type: string
+        - name: ascending
+          in: query
+          description: Default ascending
+          required: false
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/MovementDto'
+    post:
+      tags:
+        - Movements
+      summary: Creates a Movement resource
+      operationId: Movements_PostMovement
+      consumes:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: movementDto
+          in: body
+          description: The resource to create
+          required: true
+          schema:
+            $ref: '#/definitions/MovementDto'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/MovementDto'
+  '/api/v1/People/{id}/Movements':
+    get:
+      tags:
+        - Movements
+      summary: Fetches the Movement resources of a Person
+      operationId: Movements_GetMovementsByPersonId
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: id
+          in: path
+          description: The Person unique reference
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/MovementDto'
+  '/api/v1/Movements/{id}':
+    put:
+      tags:
+        - Movements
+      summary: Replaces a Movement resource
+      operationId: Movements_PutMovement
+      consumes:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+        - application/x-www-form-urlencoded
+      produces: []
+      parameters:
+        - name: id
+          in: path
+          description: The unique reference
+          required: true
+          type: integer
+          format: int32
+        - name: movementDto
+          in: body
+          description: The resource to update
+          required: true
+          schema:
+            $ref: '#/definitions/MovementDto'
+      responses:
+        '204':
+          description: No Content
+    delete:
+      tags:
+        - Movements
+      summary: Deletes a Movement resource using its identifier
+      operationId: Movements_DeleteMovement
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: id
+          in: path
+          description: The unique reference
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/MovementDto'
+  '/api/{version}/Movements':
+    post:
+      tags:
+        - Movements
+      operationId: Movements_SendAudit
+      consumes: []
+      produces: []
+      parameters:
+        - name: version
+          in: path
+          required: true
+          type: string
+      responses:
+        '204':
+          description: No Content
+  '/api/v1/People/{originSystem}/{foreignKey}':
+    get:
+      tags:
+        - People
+      summary: Fetches a Person resource using its foreign key details
+      operationId: People_GetPerson
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: originSystem
+          in: path
+          description: The foreign system identifier
+          required: true
+          type: string
+        - name: foreignKey
+          in: path
+          description: The foreign key of the person
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/MasterPersonDto'
+    put:
+      tags:
+        - People
+      summary: Replaces a Person resource using its foreign key details
+      operationId: People_PutPerson
+      consumes:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+        - application/x-www-form-urlencoded
+      produces: []
+      parameters:
+        - name: originSystem
+          in: path
+          description: The foreign system identifier
+          required: true
+          type: string
+        - name: foreignKey
+          in: path
+          description: The foreign key of the person
+          required: true
+          type: string
+        - name: personDto
+          in: body
+          description: The resource representation
+          required: true
+          schema:
+            $ref: '#/definitions/MasterPersonDto'
+      responses:
+        '204':
+          description: No Content
+    patch:
+      tags:
+        - People
+      summary: Replaces a Person resource using its foreign key details
+      operationId: People_PatchPerson
+      consumes:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+        - application/x-www-form-urlencoded
+      produces: []
+      parameters:
+        - name: originSystem
+          in: path
+          description: The foreign system identifier
+          required: true
+          type: string
+        - name: foreignKey
+          in: path
+          description: The foreign key of the person
+          required: true
+          type: string
+        - name: personDto
+          in: body
+          description: The resource representation
+          required: true
+          schema:
+            $ref: '#/definitions/MasterPersonDto'
+      responses:
+        '204':
+          description: No Content
+  '/api/v1/People/{id}':
+    get:
+      tags:
+        - People
+      summary: Fetches a Person resource
+      operationId: People_GetPerson_Id
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: id
+          in: path
+          description: The unique reference of the resource
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/MasterPersonDto'
+    put:
+      tags:
+        - People
+      summary: Replaces an Person resource
+      operationId: People_PutPerson_Id
+      consumes:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+        - application/x-www-form-urlencoded
+      produces: []
+      parameters:
+        - name: id
+          in: path
+          description: The unique reference
+          required: true
+          type: integer
+          format: int32
+        - name: personDto
+          in: body
+          description: The resource to update
+          required: true
+          schema:
+            $ref: '#/definitions/MasterPersonDto'
+      responses:
+        '204':
+          description: No Content
+    patch:
+      tags:
+        - People
+      summary: Updates a Person resource using the passed changes to the resource
+      operationId: People_PatchPerson_Id
+      consumes:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+        - application/x-www-form-urlencoded
+      produces: []
+      parameters:
+        - name: id
+          in: path
+          description: The unique reference
+          required: true
+          type: integer
+          format: int32
+        - name: personDto
+          in: body
+          description: The resource representation
+          required: true
+          schema:
+            $ref: '#/definitions/MasterPersonDto'
+      responses:
+        '204':
+          description: No Content
+  /api/v1/People:
+    get:
+      tags:
+        - People
+      summary: Fetches all Person resources
+      operationId: People_GetPeople
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: page
+          in: query
+          description: The page number
+          required: false
+          type: integer
+          format: int32
+        - name: orderBy
+          in: query
+          description: The ordering attribute
+          required: false
+          type: string
+        - name: ascending
+          in: query
+          description: Default ascending
+          required: false
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/MasterPersonDto'
+    post:
+      tags:
+        - People
+      summary: Creates a Person resource
+      operationId: People_PostPerson
+      consumes:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: personDto
+          in: body
+          description: The resource to create
+          required: true
+          schema:
+            $ref: '#/definitions/MasterPersonDto'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/MasterPersonDto'
+  /api/v1/People/Search:
+    get:
+      tags:
+        - People
+      summary: Fetches all Person resources
+      operationId: People_GetPeopleWithSearch
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: searchString
+          in: query
+          description: The firstname or last name to search
+          required: true
+          type: string
+        - name: page
+          in: query
+          description: The page number
+          required: false
+          type: integer
+          format: int32
+        - name: orderBy
+          in: query
+          description: The ordering attribute
+          required: false
+          type: string
+        - name: ascending
+          in: query
+          description: Default ascending
+          required: false
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/MasterPersonDto'
+  /api/v1/People/SearchNameDoB:
+    get:
+      tags:
+        - People
+      summary: Fetches all Person resources
+      operationId: People_GetPeopleWithSearchNameDoB
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: searchString
+          in: query
+          description: 'The date of birth, firstname or last name to search'
+          required: true
+          type: string
+        - name: page
+          in: query
+          description: The page number
+          required: false
+          type: integer
+          format: int32
+        - name: orderBy
+          in: query
+          description: The ordering attribute
+          required: false
+          type: string
+        - name: ascending
+          in: query
+          description: Default ascending
+          required: false
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/MasterPersonDto'
+  /api/v1/People/SearchNameDoBAddress:
+    get:
+      tags:
+        - People
+      summary: Fetches all Person resources
+      operationId: People_GetPeopleWithSearchNameDoBAddress
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: searchString
+          in: query
+          description: 'The date of birth, address, firstname or last name to search'
+          required: true
+          type: string
+        - name: page
+          in: query
+          description: The page number
+          required: false
+          type: integer
+          format: int32
+        - name: orderBy
+          in: query
+          description: The ordering attribute
+          required: false
+          type: string
+        - name: ascending
+          in: query
+          description: Default ascending
+          required: false
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/MasterPersonDto'
+  '/api/{version}/People':
+    post:
+      tags:
+        - People
+      operationId: People_SendAudit
+      consumes: []
+      produces: []
+      parameters:
+        - name: version
+          in: path
+          required: true
+          type: string
+      responses:
+        '204':
+          description: No Content
+  /api/v1/Relationships:
+    get:
+      tags:
+        - Relationships
+      summary: Fetches all Relationship resources
+      operationId: Relationships_GetRelationships
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: page
+          in: query
+          description: The page number
+          required: false
+          type: integer
+          format: int32
+        - name: orderBy
+          in: query
+          description: The ordering attribute
+          required: false
+          type: string
+        - name: ascending
+          in: query
+          description: Default ascending
+          required: false
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/RelationshipDto'
+  '/api/{version}/Relationships/{id}':
+    get:
+      tags:
+        - Relationships
+      summary: Fetches a Relationship resource
+      operationId: Relationships_GetRelationship
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: id
+          in: path
+          description: The unique reference of the resource
+          required: true
+          type: integer
+          format: int32
+        - name: version
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/RelationshipDto'
+    put:
+      tags:
+        - Relationships
+      summary: Replaces a Relationship resource
+      operationId: Relationships_PutRelationship
+      consumes:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+        - application/x-www-form-urlencoded
+      produces: []
+      parameters:
+        - name: id
+          in: path
+          description: The unique reference
+          required: true
+          type: integer
+          format: int32
+        - name: relationshipDto
+          in: body
+          description: The resource to update
+          required: true
+          schema:
+            $ref: '#/definitions/RelationshipDto'
+        - name: version
+          in: path
+          required: true
+          type: string
+      responses:
+        '204':
+          description: No Content
+    delete:
+      tags:
+        - Relationships
+      summary: Deletes a Relationship resource using its identifier
+      operationId: Relationships_DeleteRelationship
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: id
+          in: path
+          description: The unique reference
+          required: true
+          type: integer
+          format: int32
+        - name: version
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/RelationshipDto'
+  /api/v1/Verifications:
+    get:
+      tags:
+        - Verifications
+      summary: Fetches all Verification resources
+      operationId: Verifications_GetVerifications
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: page
+          in: query
+          description: The page number
+          required: false
+          type: integer
+          format: int32
+        - name: orderBy
+          in: query
+          description: The ordering attribute
+          required: false
+          type: string
+        - name: ascending
+          in: query
+          description: Default ascending
+          required: false
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/VerificationDto'
+    post:
+      tags:
+        - Verifications
+      summary: Creates a Verification resource
+      operationId: Verifications_PostVerification
+      consumes:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: verificationDto
+          in: body
+          description: The resource to create
+          required: true
+          schema:
+            $ref: '#/definitions/VerificationDto'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/VerificationDto'
+  '/api/v1/Verifications/{id}':
+    get:
+      tags:
+        - Verifications
+      summary: Fetches a Verification resource
+      operationId: Verifications_GetVerification
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: id
+          in: path
+          description: The unique reference of the resource
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/VerificationDto'
+    put:
+      tags:
+        - Verifications
+      summary: Replaces a Verification resource
+      operationId: Verifications_PutVerification
+      consumes:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+        - application/x-www-form-urlencoded
+      produces: []
+      parameters:
+        - name: id
+          in: path
+          description: The unique reference
+          required: true
+          type: integer
+          format: int32
+        - name: verificationDto
+          in: body
+          description: The resource to update
+          required: true
+          schema:
+            $ref: '#/definitions/VerificationDto'
+      responses:
+        '204':
+          description: No Content
+    delete:
+      tags:
+        - Verifications
+      summary: Deletes a Verification resource using its identifier
+      operationId: Verifications_DeleteVerification
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: id
+          in: path
+          description: The unique reference
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/VerificationDto'
+  '/api/{version}/Verifications':
+    post:
+      tags:
+        - Verifications
+      operationId: Verifications_SendAudit
+      consumes: []
+      produces: []
+      parameters:
+        - name: version
+          in: path
+          required: true
+          type: string
+      responses:
+        '204':
+          description: No Content
+  /api/v1/Xrefs:
+    get:
+      tags:
+        - Xrefs
+      summary: Fetches all Xref resources
+      operationId: Xrefs_GetXrefs
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: page
+          in: query
+          description: The page number
+          required: false
+          type: integer
+          format: int32
+        - name: orderBy
+          in: query
+          description: The ordering attribute
+          required: false
+          type: string
+        - name: ascending
+          in: query
+          description: Default ascending
+          required: false
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/XrefDto'
+    post:
+      tags:
+        - Xrefs
+      summary: Creates an Xref resource
+      operationId: Xrefs_PostXref
+      consumes:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: xrefDto
+          in: body
+          description: The resource to create
+          required: true
+          schema:
+            $ref: '#/definitions/XrefDto'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/XrefDto'
+  '/api/v1/Xrefs/{id}':
+    get:
+      tags:
+        - Xrefs
+      summary: Fetches an Xref resource
+      operationId: Xrefs_GetXrefById
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: id
+          in: path
+          description: The unique reference of the resource
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/XrefDto'
+    put:
+      tags:
+        - Xrefs
+      summary: Replaces an Xref resource
+      operationId: Xrefs_PutXref
+      consumes:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+        - application/x-www-form-urlencoded
+      produces: []
+      parameters:
+        - name: id
+          in: path
+          description: The unique reference
+          required: true
+          type: integer
+          format: int32
+        - name: xrefDto
+          in: body
+          description: The resource to update
+          required: true
+          schema:
+            $ref: '#/definitions/XrefDto'
+      responses:
+        '204':
+          description: No Content
+  '/api/v1/People/{id}/Xrefs':
+    get:
+      tags:
+        - Xrefs
+      summary: Fetches the Xref resources of a Person
+      operationId: Xrefs_GetXrefsByPersonId
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: id
+          in: path
+          description: The Person unique reference
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/XrefDto'
+  '/api/{version}/Xrefs/{id}':
+    delete:
+      tags:
+        - Xrefs
+      summary: Deletes an Xref resource using its identifier
+      operationId: Xrefs_DeleteXref
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      parameters:
+        - name: id
+          in: path
+          description: The unique reference
+          required: true
+          type: integer
+          format: int32
+        - name: version
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/XrefDto'
+  '/api/{version}/Xrefs':
+    post:
+      tags:
+        - Xrefs
+      operationId: Xrefs_SendAudit
+      consumes: []
+      produces: []
+      parameters:
+        - name: version
+          in: path
+          required: true
+          type: string
+      responses:
+        '204':
+          description: No Content
+definitions:
+  AddressDto:
+    type: object
+    properties:
+      person_id:
+        format: int32
+        type: integer
+      type:
+        enum:
+          - Residential
+          - Correspondence
+          - Professional
+          - CareOf
+        type: string
+      address_line_1:
+        maxLength: 40
+        minLength: 0
+        type: string
+      address_line_2:
+        maxLength: 40
+        minLength: 0
+        type: string
+      address_line_3:
+        maxLength: 40
+        minLength: 0
+        type: string
+      post_code:
+        maxLength: 9
+        minLength: 0
+        type: string
+      city:
+        maxLength: 40
+        minLength: 0
+        type: string
+      state_province:
+        maxLength: 40
+        minLength: 0
+        type: string
+      county:
+        maxLength: 40
+        minLength: 0
+        type: string
+      country:
+        maxLength: 40
+        minLength: 0
+        type: string
+      uprn:
+        maxLength: 12
+        minLength: 0
+        type: string
+      attention_of:
+        maxLength: 40
+        minLength: 0
+        type: string
+      verification:
+        $ref: '#/definitions/VerificationDto'
+      id:
+        format: int32
+        type: integer
+      status:
+        enum:
+          - Inactive
+          - Active
+          - Archived
+        type: string
+      modified_date:
+        format: date-time
+        type: string
+      created_date:
+        format: date-time
+        type: string
+  VerificationDto:
+    type: object
+    properties:
+      type:
+        type: string
+      notes:
+        type: string
+      verified_date:
+        format: date-time
+        type: string
+      verified_by_user:
+        type: string
+      id:
+        format: int32
+        type: integer
+      status:
+        enum:
+          - Inactive
+          - Active
+          - Archived
+        type: string
+      modified_date:
+        format: date-time
+        type: string
+      created_date:
+        format: date-time
+        type: string
+  MovementDto:
+    type: object
+    properties:
+      arrival_date:
+        format: date-time
+        type: string
+      leaving_date:
+        format: date-time
+        type: string
+      person_id:
+        format: int32
+        type: integer
+      verification:
+        $ref: '#/definitions/VerificationDto'
+      id:
+        format: int32
+        type: integer
+      status:
+        enum:
+          - Inactive
+          - Active
+          - Archived
+        type: string
+      modified_date:
+        format: date-time
+        type: string
+      created_date:
+        format: date-time
+        type: string
+  LifeEventDto:
+    type: object
+    properties:
+      person_id:
+        format: int32
+        type: integer
+      type:
+        enum:
+          - Birth
+          - Death
+        type: string
+      event_date:
+        format: date-time
+        type: string
+      verification:
+        $ref: '#/definitions/VerificationDto'
+      id:
+        format: int32
+        type: integer
+      status:
+        enum:
+          - Inactive
+          - Active
+          - Archived
+        type: string
+      modified_date:
+        format: date-time
+        type: string
+      created_date:
+        format: date-time
+        type: string
+  MasterPersonDto:
+    required:
+      - surname
+    type: object
+    properties:
+      registration_number:
+        maxLength: 40
+        minLength: 0
+        type: string
+      title:
+        maxLength: 40
+        minLength: 0
+        type: string
+      forename:
+        maxLength: 40
+        minLength: 0
+        type: string
+      middle_name:
+        maxLength: 40
+        minLength: 0
+        type: string
+      surname:
+        maxLength: 40
+        minLength: 0
+        type: string
+      surname_other:
+        maxLength: 40
+        minLength: 0
+        type: string
+      aka_name:
+        maxLength: 40
+        minLength: 0
+        type: string
+      nationality:
+        type: string
+      residential_status:
+        enum:
+          - Unknown
+          - Entitled
+          - EntitledToWork
+          - Registered
+          - Licenced
+        type: string
+      gender:
+        enum:
+          - Unspecified
+          - Male
+          - Female
+          - Mixed
+        type: string
+      marital_status:
+        enum:
+          - Unknown
+          - Single
+          - Married
+          - Widowed
+          - Separated
+          - Divorced
+        type: string
+      birth_date:
+        format: date-time
+        type: string
+      place_of_birth_city:
+        maxLength: 40
+        minLength: 0
+        type: string
+      place_of_birth_country:
+        maxLength: 40
+        minLength: 0
+        type: string
+      death_date:
+        format: date-time
+        type: string
+      vip_flag:
+        type: boolean
+      email_address:
+        maxLength: 100
+        minLength: 0
+        pattern: '^[\w!#$%&''*+\-/=?\^_`{|}~]+(\.[\w!#$%&''*+\-/=?\^_`{|}~]+)*@((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$'
+        type: string
+      mobile_phone:
+        maxLength: 100
+        minLength: 0
+        type: string
+      work_phone:
+        maxLength: 100
+        minLength: 0
+        type: string
+      home_phone:
+        maxLength: 100
+        minLength: 0
+        type: string
+      addresses:
+        type: array
+        items:
+          $ref: '#/definitions/PersonAddressDto'
+      relationships:
+        type: array
+        items:
+          $ref: '#/definitions/PersonRelationshipDto'
+      xrefs:
+        type: array
+        items:
+          $ref: '#/definitions/PersonXrefDto'
+      movements:
+        type: array
+        items:
+          $ref: '#/definitions/PersonMovementDto'
+      life_events:
+        type: array
+        items:
+          $ref: '#/definitions/PersonLifeEventDto'
+      verification:
+        $ref: '#/definitions/VerificationDto'
+      id:
+        format: int32
+        type: integer
+      status:
+        enum:
+          - Inactive
+          - Active
+          - Archived
+        type: string
+      modified_date:
+        format: date-time
+        type: string
+      created_date:
+        format: date-time
+        type: string
+  PersonAddressDto:
+    type: object
+    properties:
+      type:
+        enum:
+          - Residential
+          - Correspondence
+          - Professional
+          - CareOf
+        type: string
+      address_line_1:
+        maxLength: 40
+        minLength: 0
+        type: string
+      address_line_2:
+        maxLength: 40
+        minLength: 0
+        type: string
+      address_line_3:
+        maxLength: 40
+        minLength: 0
+        type: string
+      post_code:
+        maxLength: 9
+        minLength: 0
+        type: string
+      city:
+        maxLength: 40
+        minLength: 0
+        type: string
+      state_province:
+        maxLength: 40
+        minLength: 0
+        type: string
+      county:
+        maxLength: 40
+        minLength: 0
+        type: string
+      country:
+        maxLength: 40
+        minLength: 0
+        type: string
+      uprn:
+        maxLength: 12
+        minLength: 0
+        type: string
+      attention_of:
+        maxLength: 40
+        minLength: 0
+        type: string
+      verification:
+        $ref: '#/definitions/VerificationDto'
+      id:
+        format: int32
+        type: integer
+      status:
+        enum:
+          - Inactive
+          - Active
+          - Archived
+        type: string
+      modified_date:
+        format: date-time
+        type: string
+      created_date:
+        format: date-time
+        type: string
+  PersonRelationshipDto:
+    type: object
+    properties:
+      effective_date:
+        format: date-time
+        type: string
+      relationship_type:
+        enum:
+          - Parent
+          - Child
+        type: string
+      second_person:
+        format: int32
+        type: integer
+      verification:
+        $ref: '#/definitions/VerificationDto'
+      id:
+        format: int32
+        type: integer
+      status:
+        enum:
+          - Inactive
+          - Active
+          - Archived
+        type: string
+      modified_date:
+        format: date-time
+        type: string
+      created_date:
+        format: date-time
+        type: string
+  PersonXrefDto:
+    required:
+      - foreign_key
+      - origin_system
+    type: object
+    properties:
+      foreign_key:
+        type: string
+      origin_system:
+        type: string
+      verification:
+        $ref: '#/definitions/VerificationDto'
+      id:
+        format: int32
+        type: integer
+      status:
+        enum:
+          - Inactive
+          - Active
+          - Archived
+        type: string
+      modified_date:
+        format: date-time
+        type: string
+      created_date:
+        format: date-time
+        type: string
+  PersonMovementDto:
+    type: object
+    properties:
+      arrival_date:
+        format: date-time
+        type: string
+      leaving_date:
+        format: date-time
+        type: string
+      verification:
+        $ref: '#/definitions/VerificationDto'
+      id:
+        format: int32
+        type: integer
+      status:
+        enum:
+          - Inactive
+          - Active
+          - Archived
+        type: string
+      modified_date:
+        format: date-time
+        type: string
+      created_date:
+        format: date-time
+        type: string
+  PersonLifeEventDto:
+    type: object
+    properties:
+      type:
+        enum:
+          - Birth
+          - Death
+        type: string
+      event_date:
+        format: date-time
+        type: string
+      verification:
+        $ref: '#/definitions/VerificationDto'
+      id:
+        format: int32
+        type: integer
+      status:
+        enum:
+          - Inactive
+          - Active
+          - Archived
+        type: string
+      modified_date:
+        format: date-time
+        type: string
+      created_date:
+        format: date-time
+        type: string
+  RelationshipDto:
+    type: object
+    properties:
+      effective_date:
+        format: date-time
+        type: string
+      relationship_type:
+        enum:
+          - Parent
+          - Child
+        type: string
+      first_person:
+        format: int32
+        type: integer
+      second_person:
+        format: int32
+        type: integer
+      verification:
+        $ref: '#/definitions/VerificationDto'
+      id:
+        format: int32
+        type: integer
+      status:
+        enum:
+          - Inactive
+          - Active
+          - Archived
+        type: string
+      modified_date:
+        format: date-time
+        type: string
+      created_date:
+        format: date-time
+        type: string
+  XrefDto:
+    required:
+      - foreign_key
+      - origin_system
+    type: object
+    properties:
+      person_id:
+        format: int32
+        type: integer
+      foreign_key:
+        type: string
+      origin_system:
+        type: string
+      verification:
+        $ref: '#/definitions/VerificationDto'
+      id:
+        format: int32
+        type: integer
+      status:
+        enum:
+          - Inactive
+          - Active
+          - Archived
+        type: string
+      modified_date:
+        format: date-time
+        type: string
+      created_date:
+        format: date-time
+        type: string
